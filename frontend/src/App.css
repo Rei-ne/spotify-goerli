@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600&display=swap');
+body{
+   font-family: Karla;
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   background: #393939;
+}
+.mainContainer {
+  display: flex;
+  justify-content: center;
+
+  min-height: 100vh;
+/*   border: solid 1px blue; */
+  color: #1DB954;
+  padding-bottom: 10px;
+  background: #393939;
+
+}
+span{
+  color: #e3f6f5;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  margin-top: 32px;
+  max-width: 600px;
+}
+
+.header {
+  text-align: center;
+
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.bio {
+  font-family: Karla;
+  text-align: center;
+  color: #d5def5;
+  margin: 20px;
+  width: 80%;
+  align-self: center;
+  line-height: 35px;
+}
+input{
+  width: 60%;
+   align-self: center;
+   border-radius: 2rem;
+  height: 30px;
+  color: #1DB954;
+  text-align: center;
+  font-size: 0.8rem;
+
+}
+
+
+.buttonDiv{
+
+  text-align: center;
+}
+
+.waveButton {
+  cursor: pointer;
+  margin-top: 16px;
+  padding: 6px;
+  border: 0;
+  border-radius: 5px;
+  background:#1DB954;
+  color: white;
+  width: 50%;
+  border: 2px solid currentColor;
+  border-radius: 3rem;
+  font-size:1rem;
+  font-weight: 100;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  position: relative;
+  text-decoration: none;
+  transition: .2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+
+}
+
+
+ .sendWaveButton:after{
+    border-radius: 3rem;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-100%, 0), rotate(10deg);
+    transform-origin: top left;
+    transition: .2s, transform ease-out;
+    will-change: transform;
+    z-index: -1;
+  }
+
+
+   .sendWaveButton:hover::after{
+    transform: translate(10, 0);
+  }
+
+
+   .sendWaveButton:hover{
+    border: 2px solid transparent;
+      background-color: white;
+    color: #1DB954;
+    transform: scale(1.05);
+    font-weight: 300;
+    will-change: transform;
+     border-radius: 3rem;
+  }
+
+
+
+.connectWalButton:hover{
+  border: 2px solid transparent;
+    background-color: white;
+    color: orange;
+    transform: scale(1.05);
+    will-change: transform;
+  border-radius: 3rem;
+}
+
+.messageContainer{
+  border-radius: 1.5rem;
+  padding: 10px;
+  padding-left: 30px;
+  white-space: none;
+}
+.messageDiv{
+ overflow-wrap: break-word;
+}
