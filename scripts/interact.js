@@ -17,7 +17,7 @@ const main = async () => {
     const songPortalContract = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
 
     // wave
-    let songTxn = await songPortalContract.wave("A message!");
+    let songTxn = await songPortalContract.wave("");
     await songTxn.wait(); //Wait for the transaction to be mined
 
     // let songTxn2 = await songPortalContract.wave("This is message 2!");

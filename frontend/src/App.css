@@ -3,7 +3,7 @@ body{
    font-family: Karla;
    display: flex;
    justify-content: center;
-   width: 100%;
+
    background: #393939;
 }
 .mainContainer {
@@ -49,16 +49,21 @@ span{
   line-height: 35px;
 }
 input{
-  width: 60%;
+  width: 70%;
    align-self: center;
-   border-radius: 2rem;
-  height: 30px;
+   border-radius: 1rem;
+  height: 40px;
+  background: #393939;
   color: #1DB954;
   text-align: center;
   font-size: 0.8rem;
 
 }
 
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
 
 .buttonDiv{
 
@@ -70,12 +75,11 @@ input{
   margin-top: 16px;
   padding: 6px;
   border: 0;
-  border-radius: 5px;
   background:#1DB954;
   color: white;
   width: 50%;
   border: 2px solid currentColor;
-  border-radius: 3rem;
+  border-radius: 1rem;
   font-size:1rem;
   font-weight: 100;
   overflow: hidden;
@@ -90,7 +94,7 @@ input{
 
 
  .sendWaveButton:after{
-    border-radius: 3rem;
+    border-radius: 1rem;
     content: '';
     display: block;
     height: 100%;
@@ -118,7 +122,7 @@ input{
     transform: scale(1.05);
     font-weight: 300;
     will-change: transform;
-     border-radius: 3rem;
+     border-radius: 1rem;
   }
 
 
@@ -129,15 +133,34 @@ input{
     color: orange;
     transform: scale(1.05);
     will-change: transform;
-  border-radius: 3rem;
+  border-radius: 1rem;
+}
+.messageCon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 5px;
+  margin-top: 20px;
 }
 
 .messageContainer{
-  border-radius: 1.5rem;
+  border-radius: 1rem;
+  height: fit-content;
   padding: 10px;
-  padding-left: 30px;
+  width: fit-content;
   white-space: none;
+  border: 1px solid #1DB954;
 }
 .messageDiv{
  overflow-wrap: break-word;
+ height: 50%;
+ background: #e3f6f5;
+ border-radius: 1rem;
+
+}
+h1{
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
 }

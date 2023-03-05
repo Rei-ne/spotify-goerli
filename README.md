@@ -4,8 +4,21 @@
 
 ## About this repository
 
-This repo contains my solidity smart contract, compiled with [hardhat](https://hardhat.org/tutorial) and deployed with [ethers.js](https://docs.ethers.org/v5/) and [alchemy](https://docs.alchemy.com/)
+This repo contains my solidity smart contract, compiled with [hardhat](https://hardhat.org/tutorial) and deployed with [ethers.js](https://docs.ethers.org/v5/) and [alchemy](https://docs.alchemy.com/) web3
 
 ### Frontend
 
 Frontend built with react + vite
+
+### Starting the frontend
+
+- git clone the folder from github
+- open the folder with vs code to get started
+
+```
+npm install
+
+cd frontend
+npm install
+npm run dev
+```

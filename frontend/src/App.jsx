@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { ethers } from "ethers";
+
 // import abi
-import abi from '../../artifacts/contracts/SongPortal.sol/SongPortal.json'
+// import abi from '../../artifacts/contracts/SongPortal.sol/SongPortal.json'
+
+import abi from './SongPortal-abi.json'
 
 const App = () => {
 
@@ -14,13 +17,12 @@ const App = () => {
   const [allSongs, setAllSongs] = useState([]);
   const [message, setMessage] = useState("");
 
-  const API_KEY = process.env.API_KEY;
+  const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
-  const contractAddress = process.env.CONTRACT_ADDRESS;
+  const contractAddress = "0xb65CFEE0bc2F4a1D9E263da81180C37Dd19bc7C5";
 
-
-  const contractABI = abi.abi;
+  const contractABI = abi;
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -77,7 +79,7 @@ const App = () => {
     }
   }
 
-  const song = () => {
+  const song = async () => {
     try {
       const { ethereum } = window;
 
@@ -89,14 +91,15 @@ const App = () => {
           */
         const songPortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        let count = songPortalContract.getAllSongs();
+        // console.log(songPortalContract)
 
-        console.log("Retrieved total song count...", count.toNumber());
-        /*
-           * Execute the actual wave from your smart contract
-           */
-        console.log(message)
-        console.log(count)
+        let count = await songPortalContract.getAllSongs();
+
+        console.log("Retrieved total song count...", count.length);
+        // /*
+        //    * Execute the actual wave from your smart contract
+        //    */
+
         const songTxn = songPortalContract.wave(message, { gasLimit: 300000 });
         console.log("Mining...", songTxn.hash);
 
@@ -104,11 +107,12 @@ const App = () => {
         console.log("Mined -- ", songTxn.hash);
 
         count = songPortalContract.getAllSongs();
+
         if (count) {
-          setSongCount(count.toNumber())
+          setSongCount(count.length)
           console.log(songCount)
         }
-        console.log("Retrieved total song count...", count.toNumber());
+        console.log("Retrieved total song count...", count.length);
       } else {
         alert("something went wrong, please try again later");
         console.log("could not add song or retrieve song count");
@@ -136,7 +140,7 @@ const App = () => {
         */
         const songs = await songPortalContract.getAllSongs();
 
-        console.log("Songs:", songs)
+
 
         const songCollection = songs.map(song => {
           return {
@@ -149,11 +153,12 @@ const App = () => {
           * Store our data in React State
           */
         setAllSongs(songCollection);
+        // console.log(songCollection);
       } else {
         console.log("Error getting the song collection from the smart contract");
       }
     } catch (error) {
-      console.log("ethereum object not found");
+      console.log("could not connect, ethereum object not found");
 
     }
   }
@@ -234,9 +239,22 @@ const App = () => {
         </div>
 
         <div className="bio">
-          I am <span>Reine</span>, and I love music. <br />
-          Got any good recommendations? <br />
-          You can connect your testnet wallet and share your favourite playlist/song on spotify!
+
+          <p>
+            I am <span>Reine</span>, I love music and web3 <br />
+          </p>
+          <p>
+            I created a decentralized app where you can send me a spotify song on the ethereum blockchain!
+          </p>
+          <p>
+            It is a testnet application so don't worry you won't be charged real money, you can get fake money to test it <a href="https://goerlifaucet.com/">here</a>
+          </p>
+          <p>
+            All you have to do is connect your goerli testnet wallet on metamask, type in the song link and send.
+
+          </p>
+
+
 
         </div>
 
@@ -261,21 +279,23 @@ const App = () => {
             </button>
           </div>
         )}
+        <div className="messageCon">
+          {allSongs.slice(0).reverse().map((song, id) => {
+            return (
 
-        {allSongs.slice(0).reverse().map((song, id) => {
-          return (
+              <div key={id} className="messageContainer">
+                <div>sender: {song.address}</div>
+                <div className="messageDiv">
+                  <h1> song: {song.message}</h1>
 
-            <div key={id} style={{ backgroundColor: "#e8ecd6", marginLeft: "5px", marginTop: "13px", padding: "8px" }} className="messageContainer">
-              <div>Address: {song.address}</div>
-              <div className="messageDiv">
-                <h1> song: {song.message}</h1>
+                </div>
 
               </div>
 
-            </div>
+            )
+          })}
+        </div>
 
-          )
-        })}
 
       </div>
 
